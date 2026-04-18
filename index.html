@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spinogrzVPN | Premium Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000; /* Чистый черный фон */
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Анимированные блики на фоне */
+        .blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+
+        .blob-2 {
+            top: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        /* Эффект стекла iOS */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { 
+            font-size: 32px; 
+            font-weight: 800; 
+            letter-spacing: -1px;
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header p { color: #888; font-size: 14px; margin-top: 5px; }
+
+        /* Приложения */
+        .apps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .app-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .app-item:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
+        .app-item i { font-size: 20px; color: #3b82f6; display: block; margin-bottom: 6px; }
+        .app-item span { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #aaa; }
+
+        /* Ключи */
+        .key-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .key-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 15px;
+            transition: 0.3s;
+        }
+
+        .key-name { font-size: 14px; font-weight: 600; margin-bottom: 10px; display: block; color: #eee; }
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary { background: #fff; color: #000; }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; }
+        .btn:hover { opacity: 0.85; }
+
+        /* Уведомление */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.9);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            display: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+<div class="blob"></div>
+<div class="blob blob-2"></div>
+
+<div class="container">
+    <div class="glass-card">
+        <div class="header">
+            <h1>spinogrzVPN</h1>
+            <p>Премиальное подключение</p>
+        </div>
+
+        <!-- Установка софта -->
+        <div class="apps">
+            <a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe" class="app-item">
+                <i class="fab fa-windows"></i>
+                <span>ПК</span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.v2raytun.android" class="app-item">
+                <i class="fab fa-android"></i>
+                <span>Android</span>
+            </a>
+            <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id1641830506" class="app-item">
+                <i class="fab fa-apple"></i>
+                <span>iOS</span>
+            </a>
+        </div>
+
+        <!-- Список ключей -->
+        <div class="key-container" id="keyList">
+            <!-- Ключи рендерятся тут через JS -->
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast">Скопировано в буфер</div>
+
+<script>
+    const vpnKeys = [
+        "vless://1280300d-653c-4730-b821-7e839c76cc70@151.101.131.6:443?security=tls&type=xhttp&headerType=&path=&host=rusk.com&mode=packet-up&extra=%7B%22scMaxEachPostBytes%22%3A+1000000%2C+%22scMaxConcurrentPosts%22%3A+100%2C+%22scMinPostsIntervalMs%22%3A+30%2C+%22xPaddingBytes%22%3A+%22100-1000%22%2C+%22noGRPCHeader%22%3A+false%7D&sni=2a02%3A26f0%3A5d00%3A138f%3A%3A2a1&fp=chrome&alpn=h3&allowInsecure=1#🇷🇺 Russia | Moscow",
+        "vless://1280300d-653c-4730-b821-7e839c76cc70@151.101.67.6:443?security=tls&type=xhttp&headerType=&path=&host=usak.com&mode=packet-up&extra=%7B%22scMaxEachPostBytes%22%3A+1000000%2C+%22scMaxConcurrentPosts%22%3A+100%2C+%22scMinPostsIntervalMs%22%3A+30%2C+%22xPaddingBytes%22%3A+%22100-1000%22%2C+%22noGRPCHeader%22%3A+false%7D&sni=2a02%3A26f0%3A5d00%3A138f%3A%3A2a1&fp=chrome&alpn=h3&allowInsecure=1#🇺🇸 USA | New Jersey",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:159#🇹🇷 Turkey | Shadowsocks",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:157#🇫🇷 France | Shadowsocks",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:155#🇩🇪 Germany | Shadowsocks",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:154#🇳🇱 Netherland | Shadowsocks",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:151#🇱🇻 Latvia | Shadowsocks",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:158#🇵🇱 Poland | Shadowsocks",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:156#🇪🇪 Estonia | Shadowsocks",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:152#🇺🇸 USA | Shadowsocks",
+        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:153#🇷🇺 Russia | Shadowsocks"
+    ];
+
+    const keyList = document.getElementById('keyList');
+
+    vpnKeys.forEach(key => {
+        const decoded = decodeURIComponent(key);
+        const name = decoded.split('#')[1] || "Без названия";
+        
+        const card = document.createElement('div');
+        card.className = 'key-card';
+        card.innerHTML = `
+            <span class="key-name">${name}</span>
+            <div class="btn-group">
+                <a href="${key}" class="btn btn-primary">
+                    <i class="fas fa-bolt"></i> В приложение
+                </a>
+                <button class="btn btn-secondary" onclick="copyKey('${key}')">
+                    <i class="fas fa-copy"></i> Копировать
+                </button>
+            </div>
+        `;
+        keyList.appendChild(card);
+    });
+
+    function copyKey(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        });
+    }
+</script>
+
+</body>
+  </html>
