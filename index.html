@@ -3,237 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>spinogrzVPN | Premium Access</title>
+    <title>spinogrzVPN | Official</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000; /* Чистый черный фон */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+            background-color: #000;
             color: #fff;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            padding: 20px;
         }
 
-        /* Анимированные блики на фоне */
-        .blob {
+        /* Анимированные блики фона */
+        .glow {
             position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(80px);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.3) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
             z-index: -1;
-            animation: move 20s infinite alternate;
+            animation: moveGlow 15s infinite alternate;
+        }
+        .glow-2 {
+            background: radial-gradient(circle, rgba(175, 82, 222, 0.2) 0%, rgba(0,0,0,0) 70%);
+            animation-delay: -5s;
         }
 
-        .blob-2 {
-            top: -200px;
-            right: -200px;
-            background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%);
-        }
-
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
+        @keyframes moveGlow {
+            0% { transform: translate(-20%, -20%); }
+            100% { transform: translate(40%, 40%); }
         }
 
         .container {
             width: 100%;
-            max-width: 450px;
-            padding: 20px;
-            z-index: 1;
+            max-width: 420px;
+            margin-top: 40px;
         }
 
-        /* Эффект стекла iOS */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        /* Эффект матового стекла (iOS Glassmorphism) */
+        .glass {
+            background: rgba(25, 25, 25, 0.6);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 35px;
+            padding: 25px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
 
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { 
-            font-size: 32px; 
-            font-weight: 800; 
+        .logo-area {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-area h1 {
+            font-size: 34px;
+            font-weight: 700;
             letter-spacing: -1px;
-            background: linear-gradient(to bottom, #fff, #888);
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .header p { color: #888; font-size: 14px; margin-top: 5px; }
 
-        /* Приложения */
-        .apps {
+        .logo-area span {
+            font-size: 13px;
+            color: #007AFF;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Ссылки на приложения */
+        .app-links {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             margin-bottom: 30px;
         }
 
-        .app-item {
-            background: rgba(255, 255, 255, 0.03);
+        .app-btn {
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            padding: 12px;
+            border-radius: 20px;
+            padding: 12px 5px;
             text-align: center;
             text-decoration: none;
             color: #fff;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .app-item:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
-        .app-item i { font-size: 20px; color: #3b82f6; display: block; margin-bottom: 6px; }
-        .app-item span { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #aaa; }
+        .app-btn:active { transform: scale(0.9); }
+        .app-btn i { font-size: 24px; margin-bottom: 8px; display: block; color: #fff; }
+        .app-btn span { font-size: 10px; font-weight: 500; opacity: 0.6; }
 
         /* Ключи */
-        .key-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        .key-list { display: flex; flex-direction: column; gap: 12px; }
 
-        .key-card {
+        .key-item {
             background: rgba(255, 255, 255, 0.03);
+            border-radius: 22px;
+            padding: 18px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 15px;
-            transition: 0.3s;
         }
 
-        .key-name { font-size: 14px; font-weight: 600; margin-bottom: 10px; display: block; color: #eee; }
+        .key-header {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-        .btn-group {
+        .grid-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
 
         .btn {
-            padding: 12px;
-            border-radius: 12px;
             border: none;
+            border-radius: 14px;
+            padding: 12px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             text-decoration: none;
+            transition: 0.2s;
         }
 
-        .btn-primary { background: #fff; color: #000; }
-        .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; }
-        .btn:hover { opacity: 0.85; }
+        .btn-main { background: #fff; color: #000; }
+        .btn-copy { background: rgba(255,255,255,0.08); color: #fff; }
+        .btn:hover { opacity: 0.8; }
 
-        /* Уведомление */
+        .hint {
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+            margin-top: 20px;
+            line-height: 1.4;
+        }
+
+        /* Toast уведомление */
         .toast {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255,255,255,0.9);
+            bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
             color: #000;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-size: 14px;
+            padding: 12px 24px;
+            border-radius: 25px;
             font-weight: 600;
             display: none;
-            z-index: 100;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 999;
         }
     </style>
 </head>
 <body>
 
-<div class="blob"></div>
-<div class="blob blob-2"></div>
+    <div class="glow"></div>
+    <div class="glow glow-2"></div>
 
-<div class="container">
-    <div class="glass-card">
-        <div class="header">
-            <h1>spinogrzVPN</h1>
-            <p>Премиальное подключение</p>
-        </div>
+    <div class="container">
+        <div class="glass">
+            <div class="logo-area">
+                <span>Official Access</span>
+                <h1>spinogrzVPN</h1>
+            </div>
 
-        <!-- Установка софта -->
-        <div class="apps">
-            <a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe" class="app-item">
-                <i class="fab fa-windows"></i>
-                <span>ПК</span>
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.v2raytun.android" class="app-item">
-                <i class="fab fa-android"></i>
-                <span>Android</span>
-            </a>
-            <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id1641830506" class="app-item">
-                <i class="fab fa-apple"></i>
-                <span>iOS</span>
-            </a>
-        </div>
+            <div class="app-links">
+                <a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe" class="app-btn">
+                    <i class="fab fa-windows"></i>
+                    <span>PC</span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.v2raytun.android" class="app-btn">
+                    <i class="fab fa-android"></i>
+                    <span>Android</span>
+                </a>
+                <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id1641830506" class="app-btn">
+                    <i class="fab fa-apple"></i>
+                    <span>iPhone</span>
+                </a>
+            </div>
 
-        <!-- Список ключей -->
-        <div class="key-container" id="keyList">
-            <!-- Ключи рендерятся тут через JS -->
+            <div class="key-list" id="keyList"></div>
+
+            <p class="hint">Если кнопка "В приложение" не сработала — просто нажмите "Копировать" и добавьте ключ вручную через "+" в приложении.</p>
         </div>
     </div>
-</div>
 
-<div id="toast" class="toast">Скопировано в буфер</div>
+    <div id="toast" class="toast">Скопировано!</div>
 
-<script>
-    const vpnKeys = [
-        "vless://1280300d-653c-4730-b821-7e839c76cc70@151.101.131.6:443?security=tls&type=xhttp&headerType=&path=&host=rusk.com&mode=packet-up&extra=%7B%22scMaxEachPostBytes%22%3A+1000000%2C+%22scMaxConcurrentPosts%22%3A+100%2C+%22scMinPostsIntervalMs%22%3A+30%2C+%22xPaddingBytes%22%3A+%22100-1000%22%2C+%22noGRPCHeader%22%3A+false%7D&sni=2a02%3A26f0%3A5d00%3A138f%3A%3A2a1&fp=chrome&alpn=h3&allowInsecure=1#🇷🇺 Russia | Moscow",
-        "vless://1280300d-653c-4730-b821-7e839c76cc70@151.101.67.6:443?security=tls&type=xhttp&headerType=&path=&host=usak.com&mode=packet-up&extra=%7B%22scMaxEachPostBytes%22%3A+1000000%2C+%22scMaxConcurrentPosts%22%3A+100%2C+%22scMinPostsIntervalMs%22%3A+30%2C+%22xPaddingBytes%22%3A+%22100-1000%22%2C+%22noGRPCHeader%22%3A+false%7D&sni=2a02%3A26f0%3A5d00%3A138f%3A%3A2a1&fp=chrome&alpn=h3&allowInsecure=1#🇺🇸 USA | New Jersey",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:159#🇹🇷 Turkey | Shadowsocks",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:157#🇫🇷 France | Shadowsocks",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:155#🇩🇪 Germany | Shadowsocks",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:154#🇳🇱 Netherland | Shadowsocks",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:151#🇱🇻 Latvia | Shadowsocks",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:158#🇵🇱 Poland | Shadowsocks",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:156#🇪🇪 Estonia | Shadowsocks",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:152#🇺🇸 USA | Shadowsocks",
-        "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:153#🇷🇺 Russia | Shadowsocks"
-    ];
+    <script>
+        const configKeys = [
+            "vless://1280300d-653c-4730-b821-7e839c76cc70@151.101.131.6:443?security=tls&type=xhttp&headerType=&path=&host=rusk.com&mode=packet-up&extra=%7B%22scMaxEachPostBytes%22%3A+1000000%2C+%22scMaxConcurrentPosts%22%3A+100%2C+%22scMinPostsIntervalMs%22%3A+30%2C+%22xPaddingBytes%22%3A+%22100-1000%22%2C+%22noGRPCHeader%22%3A+false%7D&sni=2a02%3A26f0%3A5d00%3A138f%3A%3A2a1&fp=chrome&alpn=h3&allowInsecure=1#🇷🇺 Russia | Moscow",
+            "vless://1280300d-653c-4730-b821-7e839c76cc70@151.101.67.6:443?security=tls&type=xhttp&headerType=&path=&host=usak.com&mode=packet-up&extra=%7B%22scMaxEachPostBytes%22%3A+1000000%2C+%22scMaxConcurrentPosts%22%3A+100%2C+%22scMinPostsIntervalMs%22%3A+30%2C+%22xPaddingBytes%22%3A+%22100-1000%22%2C+%22noGRPCHeader%22%3A+false%7D&sni=2a02%3A26f0%3A5d00%3A138f%3A%3A2a1&fp=chrome&alpn=h3&allowInsecure=1#🇺🇸 USA | New Jersey",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:159#🇹🇷 Turkey | Shadowsocks",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:157#🇫🇷 France | Shadowsocks",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:155#🇩🇪 Germany | Shadowsocks",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:154#🇳🇱 Netherland | Shadowsocks",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:151#🇱🇻 Latvia | Shadowsocks",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:158#🇵🇱 Poland | Shadowsocks",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:156#🇪🇪 Estonia | Shadowsocks",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:152#🇺🇸 USA | Shadowsocks",
+            "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGNXFBRGJsUzIzRTdqNVZ2MkdDTlhn@5.42.116.189:153#🇷🇺 Russia | Shadowsocks"
+        ];
 
-    const keyList = document.getElementById('keyList');
+        const listDiv = document.getElementById('keyList');
 
-    vpnKeys.forEach(key => {
-        const decoded = decodeURIComponent(key);
-        const name = decoded.split('#')[1] || "Без названия";
-        
-        const card = document.createElement('div');
-        card.className = 'key-card';
-        card.innerHTML = `
-            <span class="key-name">${name}</span>
-            <div class="btn-group">
-                <a href="${key}" class="btn btn-primary">
-                    <i class="fas fa-bolt"></i> В приложение
-                </a>
-                <button class="btn btn-secondary" onclick="copyKey('${key}')">
-                    <i class="fas fa-copy"></i> Копировать
-                </button>
-            </div>
-        `;
-        keyList.appendChild(card);
-    });
-
-    function copyKey(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            const toast = document.getElementById('toast');
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        configKeys.forEach(rawKey => {
+            const name = decodeURIComponent(rawKey).split('#')[1] || "VPN Server";
+            const item = document.createElement('div');
+            item.className = 'key-item';
+            item.innerHTML = `
+                <div class="key-header">${name}</div>
+                <div class="grid-buttons">
+                    <button class="btn btn-main" onclick="openKey('${rawKey}')">
+                        <i class="fas fa-external-link-alt"></i> В приложение
+                    </button>
+                    <button class="btn btn-copy" onclick="copyKey('${rawKey}')">
+                        <i class="fas fa-copy"></i> Копировать
+                    </button>
+                </div>
+            `;
+            listDiv.appendChild(item);
         });
-    }
-</script>
 
+        function openKey(link) {
+            // Принудительный переход для Android/iOS
+            window.location.href = link;
+            
+            // Если через 500мс ничего не произошло - уведомляем пользователя
+            setTimeout(() => {
+                showToast("Пытаемся открыть приложение...");
+            }, 500);
+        }
+
+        function copyKey(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showToast("Ключ скопирован!");
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 2500);
+        }
+    </script>
 </body>
-  </html>
+</html>
